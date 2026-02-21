@@ -1,61 +1,61 @@
 # rank-cat-expressiveness
 
-Ranks cat pictures by the expressive character visible in each image — surfacing the portraits that reveal personality and inner life, and ranking down the snapshots where a cat is merely present.
+Ranks a collection of cat pictures by the expressive character visible in each image. Not by photographic quality, not by cuteness, not by breed — by how much a single picture reveals about who a particular cat is in a particular moment.
 
-## How It Works
-
-`rank-cat-expressiveness` is a **vector function**. Given an array of two or more cat images, it produces a probability distribution (a vector of values summing to 1) that ranks the images from most to least expressive. Higher values indicate images where the cat's face, body, and moment communicate something vivid and specific; lower values indicate images that are generic, neutral, or unrevealing.
-
-The function decomposes expressiveness into three independent dimensions, each evaluated by a dedicated sub-function. The final ranking is a weighted combination of all three evaluations.
+A blurry snapshot of a cat mid-sneeze, caught in outraged bewilderment, outranks a studio-lit portrait of a cat sitting politely on a cushion. The key distinction is **specificity versus generality**: an image that communicates something particular about a cat's inner life ranks above an image that merely confirms a cat was present.
 
 ## Input
 
-An array of cat images (minimum 2):
+An array of **2 or more cat images**. Each image should contain at least one cat. The images can come from any source — personal photo libraries, social media feeds, shelter adoption galleries, or any other collection that needs sorting by expressiveness.
 
-```json
-{
-  "type": "array",
-  "minItems": 2,
-  "items": {
-    "type": "image",
-    "description": "A cat picture to evaluate for expressive character."
-  }
-}
 ```
-
-Images can come from any source — phone cameras, social media, shelter listings, professional photography. Technical quality does not matter; what matters is what the cat's face, body, and behavior communicate within the frame.
+[image, image, image, ...]
+```
 
 ## Output
 
-A vector of floating-point values, one per input image, summing to 1. Each value represents the image's relative expressiveness compared to the others in the set. For example, given 4 images, an output of `[0.45, 0.30, 0.15, 0.10]` means the first image is the most expressive and the last is the least.
+A **normalized vector of scores** (one per input image, summing to 1) representing each image's relative expressive character. Higher scores indicate images with more expressive, characterful cats; lower scores indicate generic or neutral poses.
+
+```
+[0.45, 0.35, 0.12, 0.08]
+```
 
 ## What It Evaluates
 
-The function breaks expressive character into three qualities, each handled by its own sub-function:
+The function decomposes expressive character into three qualities, each handled by a dedicated sub-function:
 
 ### 1. Facial Expressiveness
-**Sub-function:** [rank-cat-facial-expressiveness](https://github.com/ObjectiveAI-claude-code-1/rank-cat-facial-expressiveness)
+**[{{ .Task0 }}](https://github.com/{{ .Owner }}/{{ .Task0 }})**
 
-Ranks images by the emotional and psychological information visible in the cat's face. Reads the eyes (wide-open alarm, half-lidded contentment, dilated pupils of excitement), ears (pricked forward in curiosity, flattened in annoyance, rotated backward in tracking), mouth (open mid-yawn, closed in regal indifference), and whiskers (fanned forward in engagement, pulled back flat). The key question: *could you confidently name what this cat is feeling just by looking at its face?* Images with legible, specific expressions rank high; images with blank, neutral, or hidden faces rank low.
+Reads the cat's face for signs of active emotional expression. Examines the eyes for states like relaxation, focus, excitement, or affection — from slow half-lidded blinks to wide dilated stares. Reads the ears for signals: forward-pricked curiosity, sideways-flattened irritation ("airplane ears"), or fully pinned-back alarm. Notes whether the mouth and whiskers add expressiveness — a mid-yawn, a mid-meow, or whiskers fanned forward in engagement. The central question: is the face actively transmitting an inner state, or is it simply present?
+
+**Ranks high:** A cat with pupils dilated in excitement, ears pinned back in annoyance, or eyes squeezed shut in blissful contentment.
+**Ranks low:** A cat with a neutral, closed expression — the generic resting face of a cat that is neither engaged nor bothered.
 
 ### 2. Body Posture and Physical Tension
-**Sub-function:** [cat-posture-expressiveness](https://github.com/ObjectiveAI-claude-code-1/cat-posture-expressiveness)
+**[{{ .Task1 }}](https://github.com/{{ .Owner }}/{{ .Task1 }})**
 
-Scores each image individually for how much the cat's body communicates. Examines limb geometry, weight distribution, and the degree of tension or relaxation throughout the frame. Distinctive postures — the hunting crouch, the boneless furniture-drape, the startled Halloween arch, the perfectly tucked loaf, the belly-up sprawl of total vulnerability — score high because the body itself tells a story. Neutral, unremarkable sitting or standing positions score low because they could belong to any cat at any time.
+Reads the cat's body for the physical story it tells. Assesses the degree of tension or relaxation visible in the posture — from the rigid arch and puffed tail of a startled cat, to the boneless sprawl of one draped across furniture in complete surrender, to the coiled crouch of a cat about to pounce. Evaluates whether the posture is dynamic and communicative, or static and default.
 
-### 3. Specificity of Moment
-**Sub-function:** [rank-cat-moment-specificity](https://github.com/ObjectiveAI-claude-code-1/rank-cat-moment-specificity)
+**Ranks high:** A cat caught mid-leap, theatrically flopped in a doorway, or loafing with the deliberate composure of a cat who has chosen serenity.
+**Ranks low:** A cat sitting upright in a generic position that any cat might hold at any time without particular intention.
 
-Ranks images by whether they capture a *particular* instant or a *generic* snapshot. Looks for narrative tension — a sense that something just happened or is about to happen. A cat mid-leap, a cat knocking something off a table with deliberate eye contact, a cat frozen in the act of stealing food — these are specific, unrepeatable moments that reveal an individual personality. Images where the cat could be anywhere, doing nothing in particular, at any point in time rank lowest.
+### 3. Specificity of Individual Character
+**[{{ .Task2 }}](https://github.com/{{ .Owner }}/{{ .Task2 }})**
+
+Assesses whether the image captures something particular to *this* cat in *this* moment. Looks for idiosyncrasy — a pose so peculiar, an expression so loaded with apparent intention, that a viewer would instinctively narrate it: *"This cat is judging me,"* or *"This cat has never been more offended."* This is the quality that separates a memorable cat picture from a merely competent one.
+
+**Scores high:** A cat wedged impossibly into a box far too small, one paw extended in defiance of physics — an image that could not belong to just any cat.
+**Scores low:** A pleasant but anonymous image that tells you nothing about who that particular cat is.
 
 ## Use Cases
 
-- **Photo curation**: Find the 10 best images out of hundreds on your camera roll — the ones with the most personality and character.
-- **Shelter and adoption listings**: Select the most compelling, personality-rich photos to represent animals waiting for homes.
-- **Social media and content**: Surface the cat pictures most likely to stop someone mid-scroll — the ones that communicate something vivid.
-- **Content recommendation**: Prioritize expressive, character-rich images over generic ones when serving animal content in feeds or galleries.
-- **Understanding resonance**: Use the three-dimensional breakdown to study *why* certain cat pictures resonate — which qualities (face, body, moment) contribute most to a picture's impact.
+- **Social media platforms** — Select the most engaging thumbnail from a gallery of pet photos
+- **Animal shelters** — Choose adoption profile pictures that best showcase each cat's personality, because a photo of a cat gazing imperiously from a high shelf tells a potential adopter far more than a photo of a cat curled in a generic ball
+- **Personal photo libraries** — Surface highlight images from thousands of near-identical shots
+- **Content curation** — Filter large volumes of cat content to find the images with the most character and personality
+- **Pet photography** — Identify the strongest shots from a session based on expressive impact rather than technical quality
 
 ## Philosophy
 
-The best cat pictures are portraits, not snapshots. They make you feel like you know the cat. They capture individuality, not mere presence. This function operationalizes that intuition by evaluating three concrete dimensions of expressiveness and combining them into a single ranking. It does not judge beauty, breed, or photographic technique. It asks only: *Is this cat telling us something?*
+The best pictures of animals are the ones that make us feel, however briefly, as though we understand what the animal is experiencing. This function reads the visual language of posture, expression, and individuality, and ranks images by how much of that language is present. The images that say the most, rank the highest.

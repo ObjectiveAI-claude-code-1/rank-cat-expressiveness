@@ -1,59 +1,5 @@
 {
   "type": "vector.function",
-  "input_maps": [
-    {
-      "$starlark": "input"
-    }
-  ],
-  "tasks": [
-    {
-      "type": "vector.function",
-      "owner": "ObjectiveAI-claude-code-1",
-      "repository": "rank-cat-facial-expressiveness",
-      "commit": "cd3a9d8a9c84527d677e26f79c0a0ad1f985bd81",
-      "skip": null,
-      "input": {
-        "$starlark": "input"
-      },
-      "output": {
-        "$starlark": "output"
-      }
-    },
-    {
-      "type": "scalar.function",
-      "owner": "ObjectiveAI-claude-code-1",
-      "repository": "cat-posture-expressiveness",
-      "commit": "5cb2897c4d9b20f9afb94082e01fed39f8c0f4b7",
-      "skip": null,
-      "map": 0,
-      "input": {
-        "$starlark": "map"
-      },
-      "output": {
-        "$starlark": "[s / sum(output) for s in output] if sum(output) > 0 else [1.0 / len(output) for s in output]"
-      }
-    },
-    {
-      "type": "vector.function",
-      "owner": "ObjectiveAI-claude-code-1",
-      "repository": "rank-cat-moment-specificity",
-      "commit": "a73bbecd48cecb3d489c66ce6e35acaf9608edd0",
-      "skip": null,
-      "input": {
-        "$starlark": "input"
-      },
-      "output": {
-        "$starlark": "output"
-      }
-    }
-  ],
-  "input_split": {
-    "$starlark": "[[item] for item in input]"
-  },
-  "input_merge": {
-    "$starlark": "[item for sublist in input for item in sublist]"
-  },
-  "description": "Ranks cat pictures by expressive character — how vividly each image communicates the cat's personality and inner life. Evaluates facial expressiveness, body posture and tension, and specificity of moment to surface portraits over snapshots.",
   "input_schema": {
     "type": "array",
     "description": "A collection of cat pictures to rank by the expressive character of the cat in each image.",
@@ -65,5 +11,89 @@
   },
   "output_length": {
     "$starlark": "len(input)"
-  }
+  },
+  "input_split": {
+    "$starlark": "[[item] for item in input]"
+  },
+  "input_merge": {
+    "$starlark": "[item for sublist in input for item in sublist]"
+  },
+  "tasks": [
+    {
+      "type": "placeholder.vector.function",
+      "input_schema": {
+        "type": "array",
+        "description": "Cat pictures to rank by the expressiveness of the cat's facial expression.",
+        "minItems": 2,
+        "items": {
+          "type": "image",
+          "description": "A cat picture to evaluate for facial expressiveness."
+        }
+      },
+      "output_length": {
+        "$starlark": "len(input)"
+      },
+      "input_split": {
+        "$starlark": "[[item] for item in input]"
+      },
+      "input_merge": {
+        "$starlark": "[item for sublist in input for item in sublist]"
+      },
+      "skip": null,
+      "input": {
+        "$starlark": "input"
+      },
+      "output": {
+        "$starlark": "output"
+      }
+    },
+    {
+      "type": "placeholder.vector.function",
+      "input_schema": {
+        "type": "array",
+        "description": "Cat pictures to rank by the expressiveness of the cat's body posture and physical tension.",
+        "minItems": 2,
+        "items": {
+          "type": "image",
+          "description": "A cat picture to evaluate for body posture expressiveness."
+        }
+      },
+      "output_length": {
+        "$starlark": "len(input)"
+      },
+      "input_split": {
+        "$starlark": "[[item] for item in input]"
+      },
+      "input_merge": {
+        "$starlark": "[item for sublist in input for item in sublist]"
+      },
+      "skip": null,
+      "input": {
+        "$starlark": "input"
+      },
+      "output": {
+        "$starlark": "output"
+      }
+    },
+    {
+      "type": "placeholder.scalar.function",
+      "input_schema": {
+        "type": "image",
+        "description": "A single cat picture to evaluate for specificity of individual character."
+      },
+      "map": 0,
+      "input": {
+        "$starlark": "map"
+      },
+      "output": {
+        "$starlark": "[score / sum(output) for score in output] if sum(output) > 0 else [1.0 / len(output)] * len(output)"
+      }
+    }
+  ],
+  "input_maps": [
+    {
+      "$starlark": "input"
+    }
+  ],
+  "description": "Ranks cat pictures by expressive character — evaluating facial expression, body posture, and specificity of individual personality. Images where the cat's pose communicates something particular about its inner life rank high; generic, interchangeable poses rank low."
 }
