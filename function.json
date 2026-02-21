@@ -1,0 +1,100 @@
+{
+  "type": "vector.function",
+  "input_schema": {
+    "type": "array",
+    "description": "A collection of cat pictures to rank by the expressive character of the cat in each image.",
+    "minItems": 2,
+    "items": {
+      "type": "image",
+      "description": "A cat picture to evaluate for expressive character."
+    }
+  },
+  "output_length": {
+    "$starlark": "len(input)"
+  },
+  "input_split": {
+    "$starlark": "[[item] for item in input]"
+  },
+  "input_merge": {
+    "$starlark": "[item for sublist in input for item in sublist]"
+  },
+  "tasks": [
+    {
+      "type": "placeholder.vector.function",
+      "input_schema": {
+        "type": "array",
+        "description": "Cat pictures to rank by the expressiveness of each cat's face.",
+        "minItems": 2,
+        "items": {
+          "type": "image",
+          "description": "A cat picture to evaluate for facial expressiveness."
+        }
+      },
+      "output_length": {
+        "$starlark": "len(input)"
+      },
+      "input_split": {
+        "$starlark": "[[item] for item in input]"
+      },
+      "input_merge": {
+        "$starlark": "[item for sublist in input for item in sublist]"
+      },
+      "skip": null,
+      "input": {
+        "$starlark": "input"
+      },
+      "output": {
+        "$starlark": "output"
+      }
+    },
+    {
+      "type": "placeholder.scalar.function",
+      "input_schema": {
+        "type": "image",
+        "description": "A single cat picture to score for the expressiveness of the cat's body posture and physical tension."
+      },
+      "skip": null,
+      "map": 0,
+      "input": {
+        "$starlark": "map"
+      },
+      "output": {
+        "$starlark": "[s / sum(output) for s in output] if sum(output) > 0 else [1.0 / len(output) for s in output]"
+      }
+    },
+    {
+      "type": "placeholder.vector.function",
+      "input_schema": {
+        "type": "array",
+        "description": "Cat pictures to rank by the specificity of the moment captured in each image.",
+        "minItems": 2,
+        "items": {
+          "type": "image",
+          "description": "A cat picture to evaluate for specificity of moment."
+        }
+      },
+      "output_length": {
+        "$starlark": "len(input)"
+      },
+      "input_split": {
+        "$starlark": "[[item] for item in input]"
+      },
+      "input_merge": {
+        "$starlark": "[item for sublist in input for item in sublist]"
+      },
+      "skip": null,
+      "input": {
+        "$starlark": "input"
+      },
+      "output": {
+        "$starlark": "output"
+      }
+    }
+  ],
+  "input_maps": [
+    {
+      "$starlark": "input"
+    }
+  ],
+  "description": "Ranks cat pictures by expressive character — how vividly each image communicates the cat's personality and inner life. Evaluates facial expressiveness, body posture and tension, and specificity of moment to surface portraits over snapshots."
+}
