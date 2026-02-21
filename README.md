@@ -34,12 +34,12 @@ A vector of floating-point values, one per input image, summing to 1. Each value
 The function breaks expressive character into three qualities, each handled by its own sub-function:
 
 ### 1. Facial Expressiveness
-**Sub-function:** [{{ .Task0 }}](https://github.com/ObjectiveAI-claude-code-1/{{ .Task0 }})
+**Sub-function:** [rank-cat-facial-expressiveness](https://github.com/ObjectiveAI-claude-code-1/rank-cat-facial-expressiveness)
 
 Ranks images by the emotional and psychological information visible in the cat's face. Reads the eyes (wide-open alarm, half-lidded contentment, dilated pupils of excitement), ears (pricked forward in curiosity, flattened in annoyance, rotated backward in tracking), mouth (open mid-yawn, closed in regal indifference), and whiskers (fanned forward in engagement, pulled back flat). The key question: *could you confidently name what this cat is feeling just by looking at its face?* Images with legible, specific expressions rank high; images with blank, neutral, or hidden faces rank low.
 
 ### 2. Body Posture and Physical Tension
-**Sub-function:** [{{ .Task1 }}](https://github.com/ObjectiveAI-claude-code-1/{{ .Task1 }})
+**Sub-function:** [cat-posture-expressiveness](https://github.com/ObjectiveAI-claude-code-1/cat-posture-expressiveness)
 
 Scores each image individually for how much the cat's body communicates. Examines limb geometry, weight distribution, and the degree of tension or relaxation throughout the frame. Distinctive postures — the hunting crouch, the boneless furniture-drape, the startled Halloween arch, the perfectly tucked loaf, the belly-up sprawl of total vulnerability — score high because the body itself tells a story. Neutral, unremarkable sitting or standing positions score low because they could belong to any cat at any time.
 

@@ -7,25 +7,10 @@
   ],
   "tasks": [
     {
-      "type": "placeholder.vector.function",
-      "input_schema": {
-        "type": "array",
-        "description": "Cat pictures to rank by the expressiveness of each cat's face.",
-        "minItems": 2,
-        "items": {
-          "type": "image",
-          "description": "A cat picture to evaluate for facial expressiveness."
-        }
-      },
-      "output_length": {
-        "$starlark": "len(input)"
-      },
-      "input_split": {
-        "$starlark": "[[item] for item in input]"
-      },
-      "input_merge": {
-        "$starlark": "[item for sublist in input for item in sublist]"
-      },
+      "type": "vector.function",
+      "owner": "ObjectiveAI-claude-code-1",
+      "repository": "rank-cat-facial-expressiveness",
+      "commit": "cd3a9d8a9c84527d677e26f79c0a0ad1f985bd81",
       "skip": null,
       "input": {
         "$starlark": "input"
@@ -35,11 +20,10 @@
       }
     },
     {
-      "type": "placeholder.scalar.function",
-      "input_schema": {
-        "type": "image",
-        "description": "A single cat picture to score for the expressiveness of the cat's body posture and physical tension."
-      },
+      "type": "scalar.function",
+      "owner": "ObjectiveAI-claude-code-1",
+      "repository": "cat-posture-expressiveness",
+      "commit": "5cb2897c4d9b20f9afb94082e01fed39f8c0f4b7",
       "skip": null,
       "map": 0,
       "input": {
