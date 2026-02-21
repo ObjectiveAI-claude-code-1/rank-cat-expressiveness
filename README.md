@@ -25,7 +25,7 @@ A **normalized vector of scores** (one per input image, summing to 1) representi
 The function decomposes expressive character into three qualities, each handled by a dedicated sub-function:
 
 ### 1. Facial Expressiveness
-**[{{ .Task0 }}](https://github.com/{{ .Owner }}/{{ .Task0 }})**
+**[cat-face-expressiveness-ranker](https://github.com/ObjectiveAI-claude-code-1/cat-face-expressiveness-ranker)**
 
 Reads the cat's face for signs of active emotional expression. Examines the eyes for states like relaxation, focus, excitement, or affection — from slow half-lidded blinks to wide dilated stares. Reads the ears for signals: forward-pricked curiosity, sideways-flattened irritation ("airplane ears"), or fully pinned-back alarm. Notes whether the mouth and whiskers add expressiveness — a mid-yawn, a mid-meow, or whiskers fanned forward in engagement. The central question: is the face actively transmitting an inner state, or is it simply present?
 
@@ -33,7 +33,7 @@ Reads the cat's face for signs of active emotional expression. Examines the eyes
 **Ranks low:** A cat with a neutral, closed expression — the generic resting face of a cat that is neither engaged nor bothered.
 
 ### 2. Body Posture and Physical Tension
-**[{{ .Task1 }}](https://github.com/{{ .Owner }}/{{ .Task1 }})**
+**[cat-body-language-intensity](https://github.com/ObjectiveAI-claude-code-1/cat-body-language-intensity)**
 
 Reads the cat's body for the physical story it tells. Assesses the degree of tension or relaxation visible in the posture — from the rigid arch and puffed tail of a startled cat, to the boneless sprawl of one draped across furniture in complete surrender, to the coiled crouch of a cat about to pounce. Evaluates whether the posture is dynamic and communicative, or static and default.
 
@@ -41,7 +41,7 @@ Reads the cat's body for the physical story it tells. Assesses the degree of ten
 **Ranks low:** A cat sitting upright in a generic position that any cat might hold at any time without particular intention.
 
 ### 3. Specificity of Individual Character
-**[{{ .Task2 }}](https://github.com/{{ .Owner }}/{{ .Task2 }})**
+**[cat-idiosyncrasy-score](https://github.com/ObjectiveAI-claude-code-1/cat-idiosyncrasy-score)**
 
 Assesses whether the image captures something particular to *this* cat in *this* moment. Looks for idiosyncrasy — a pose so peculiar, an expression so loaded with apparent intention, that a viewer would instinctively narrate it: *"This cat is judging me,"* or *"This cat has never been more offended."* This is the quality that separates a memorable cat picture from a merely competent one.
 
