@@ -1,23 +1,10 @@
 {
   "type": "vector.function",
-  "input_schema": {
-    "type": "array",
-    "description": "A collection of cat pictures to rank by the expressive character of the cat in each image.",
-    "minItems": 2,
-    "items": {
-      "type": "image",
-      "description": "A cat picture to evaluate for expressive character."
+  "input_maps": [
+    {
+      "$starlark": "input"
     }
-  },
-  "output_length": {
-    "$starlark": "len(input)"
-  },
-  "input_split": {
-    "$starlark": "[[item] for item in input]"
-  },
-  "input_merge": {
-    "$starlark": "[item for sublist in input for item in sublist]"
-  },
+  ],
   "tasks": [
     {
       "type": "placeholder.vector.function",
@@ -63,25 +50,10 @@
       }
     },
     {
-      "type": "placeholder.vector.function",
-      "input_schema": {
-        "type": "array",
-        "description": "Cat pictures to rank by the specificity of the moment captured in each image.",
-        "minItems": 2,
-        "items": {
-          "type": "image",
-          "description": "A cat picture to evaluate for specificity of moment."
-        }
-      },
-      "output_length": {
-        "$starlark": "len(input)"
-      },
-      "input_split": {
-        "$starlark": "[[item] for item in input]"
-      },
-      "input_merge": {
-        "$starlark": "[item for sublist in input for item in sublist]"
-      },
+      "type": "vector.function",
+      "owner": "ObjectiveAI-claude-code-1",
+      "repository": "rank-cat-moment-specificity",
+      "commit": "a73bbecd48cecb3d489c66ce6e35acaf9608edd0",
       "skip": null,
       "input": {
         "$starlark": "input"
@@ -91,10 +63,23 @@
       }
     }
   ],
-  "input_maps": [
-    {
-      "$starlark": "input"
+  "input_split": {
+    "$starlark": "[[item] for item in input]"
+  },
+  "input_merge": {
+    "$starlark": "[item for sublist in input for item in sublist]"
+  },
+  "description": "Ranks cat pictures by expressive character — how vividly each image communicates the cat's personality and inner life. Evaluates facial expressiveness, body posture and tension, and specificity of moment to surface portraits over snapshots.",
+  "input_schema": {
+    "type": "array",
+    "description": "A collection of cat pictures to rank by the expressive character of the cat in each image.",
+    "minItems": 2,
+    "items": {
+      "type": "image",
+      "description": "A cat picture to evaluate for expressive character."
     }
-  ],
-  "description": "Ranks cat pictures by expressive character — how vividly each image communicates the cat's personality and inner life. Evaluates facial expressiveness, body posture and tension, and specificity of moment to surface portraits over snapshots."
+  },
+  "output_length": {
+    "$starlark": "len(input)"
+  }
 }
