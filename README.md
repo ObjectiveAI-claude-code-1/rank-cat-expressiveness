@@ -29,15 +29,15 @@ A probability distribution (array of numbers summing to 1) with one value per in
 
 The function decomposes expressive character into three qualities, each handled by a dedicated sub-function:
 
-### 1. Facial Legibility — [`{{ .Task0 }}`](https://github.com/{{ .Owner }}/{{ .Task0 }})
+### 1. Facial Legibility — [`rank-cat-expression-legibility`](https://github.com/ObjectiveAI-claude-code-1/rank-cat-expression-legibility)
 
 Ranks images by how clearly the cat's face communicates an emotional or mental state. Examines eyes (wide with surprise, narrowed with suspicion, locked in focus, squeezed shut in bliss), ears (pricked forward in curiosity, flattened in annoyance, rotated back in alarm), mouth (open mid-meow, tongue visible), and whisker position. A face caught mid-expression ranks high. A face that is neutral, blank, or turned away ranks low. The key question: *looking only at this cat's face, could you describe what it appears to be feeling?*
 
-### 2. Bodily Intention — [`{{ .Task1 }}`](https://github.com/{{ .Owner }}/{{ .Task1 }})
+### 2. Bodily Intention — [`cat-body-action-signal`](https://github.com/ObjectiveAI-claude-code-1/cat-body-action-signal)
 
 Ranks images by how much the cat's body posture communicates a specific action, state, or intention. Looks for postures with visible purpose: the rigid crouch before a pounce, the boneless sprawl of deep sleep, the puffed-up arch of alarm, the extended stretch of a mid-leap, the rhythmic kneading of paws. A body telling a clear story ranks high. A body sitting quietly in a standard, symmetrical pose ranks low. The key question: *looking only at this cat's body, could you describe what it is doing or about to do?*
 
-### 3. Particularity — [`{{ .Task2 }}`](https://github.com/{{ .Owner }}/{{ .Task2 }})
+### 3. Particularity — [`{{ .Task2 }}`](https://github.com/ObjectiveAI-claude-code-1/{{ .Task2 }})
 
 Scores each image individually for how singular and unrepeatable the captured moment is. Evaluates whether the combination of expression, posture, and gesture belongs only to this specific cat in this specific instant, or whether any similar cat could be swapped in without anyone noticing. An image that resists substitution scores high. A generic, interchangeable snapshot scores low. The key question: *could only this cat have made this picture?*
 

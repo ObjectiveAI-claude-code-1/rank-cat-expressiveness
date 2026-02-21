@@ -1,44 +1,16 @@
 {
   "type": "vector.function",
-  "input_schema": {
-    "type": "array",
-    "description": "A collection of cat pictures to rank by the expressive character of the cat in each image.",
-    "minItems": 2,
-    "items": {
-      "type": "image",
-      "description": "A cat picture to evaluate for expressive character."
+  "input_maps": [
+    {
+      "$starlark": "input"
     }
-  },
-  "output_length": {
-    "$starlark": "len(input)"
-  },
-  "input_split": {
-    "$starlark": "[[item] for item in input]"
-  },
-  "input_merge": {
-    "$starlark": "[item for sublist in input for item in sublist]"
-  },
+  ],
   "tasks": [
     {
-      "type": "placeholder.vector.function",
-      "input_schema": {
-        "type": "array",
-        "description": "Cat pictures to rank by how clearly the cat's facial expression communicates an emotional or mental state.",
-        "minItems": 2,
-        "items": {
-          "type": "image",
-          "description": "A cat picture to evaluate for facial expressiveness."
-        }
-      },
-      "output_length": {
-        "$starlark": "len(input)"
-      },
-      "input_split": {
-        "$starlark": "[[item] for item in input]"
-      },
-      "input_merge": {
-        "$starlark": "[item for sublist in input for item in sublist]"
-      },
+      "type": "vector.function",
+      "owner": "ObjectiveAI-claude-code-1",
+      "repository": "rank-cat-expression-legibility",
+      "commit": "d8609645eb33f1240b1d4f6085dd61a124d99773",
       "skip": null,
       "input": {
         "$jmespath": "input"
@@ -48,25 +20,10 @@
       }
     },
     {
-      "type": "placeholder.vector.function",
-      "input_schema": {
-        "type": "array",
-        "description": "Cat pictures to rank by how much the cat's body posture communicates a specific action, state, or intention.",
-        "minItems": 2,
-        "items": {
-          "type": "image",
-          "description": "A cat picture to evaluate for bodily intention and postural expressiveness."
-        }
-      },
-      "output_length": {
-        "$starlark": "len(input)"
-      },
-      "input_split": {
-        "$starlark": "[[item] for item in input]"
-      },
-      "input_merge": {
-        "$starlark": "[item for sublist in input for item in sublist]"
-      },
+      "type": "vector.function",
+      "owner": "ObjectiveAI-claude-code-1",
+      "repository": "cat-body-action-signal",
+      "commit": "dddb3c5f57cfeb922c1cd6958e965b6cb699ac0a",
       "skip": null,
       "input": {
         "$jmespath": "input"
@@ -91,10 +48,23 @@
       }
     }
   ],
-  "input_maps": [
-    {
-      "$starlark": "input"
+  "input_split": {
+    "$starlark": "[[item] for item in input]"
+  },
+  "input_merge": {
+    "$starlark": "[item for sublist in input for item in sublist]"
+  },
+  "description": "Ranks cat pictures by expressive character. Evaluates facial legibility, bodily intention, and the particularity of the captured moment to surface images where the cat's personality speaks through the frame. Specific, characterful poses rank high; generic, interchangeable snapshots rank low.",
+  "input_schema": {
+    "type": "array",
+    "description": "A collection of cat pictures to rank by the expressive character of the cat in each image.",
+    "minItems": 2,
+    "items": {
+      "type": "image",
+      "description": "A cat picture to evaluate for expressive character."
     }
-  ],
-  "description": "Ranks cat pictures by expressive character. Evaluates facial legibility, bodily intention, and the particularity of the captured moment to surface images where the cat's personality speaks through the frame. Specific, characterful poses rank high; generic, interchangeable snapshots rank low."
+  },
+  "output_length": {
+    "$starlark": "len(input)"
+  }
 }
