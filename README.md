@@ -37,7 +37,7 @@ Ranks images by how clearly the cat's face communicates an emotional or mental s
 
 Ranks images by how much the cat's body posture communicates a specific action, state, or intention. Looks for postures with visible purpose: the rigid crouch before a pounce, the boneless sprawl of deep sleep, the puffed-up arch of alarm, the extended stretch of a mid-leap, the rhythmic kneading of paws. A body telling a clear story ranks high. A body sitting quietly in a standard, symmetrical pose ranks low. The key question: *looking only at this cat's body, could you describe what it is doing or about to do?*
 
-### 3. Particularity — [`{{ .Task2 }}`](https://github.com/ObjectiveAI-claude-code-1/{{ .Task2 }})
+### 3. Particularity — [`cat-moment-singularity`](https://github.com/ObjectiveAI-claude-code-1/cat-moment-singularity)
 
 Scores each image individually for how singular and unrepeatable the captured moment is. Evaluates whether the combination of expression, posture, and gesture belongs only to this specific cat in this specific instant, or whether any similar cat could be swapped in without anyone noticing. An image that resists substitution scores high. A generic, interchangeable snapshot scores low. The key question: *could only this cat have made this picture?*
 

@@ -33,11 +33,10 @@
       }
     },
     {
-      "type": "placeholder.scalar.function",
-      "input_schema": {
-        "type": "image",
-        "description": "A single cat picture to evaluate for how particular and singular the captured moment is."
-      },
+      "type": "scalar.function",
+      "owner": "ObjectiveAI-claude-code-1",
+      "repository": "cat-moment-singularity",
+      "commit": "5751e87163edf59aa33a58c554189796f28e51d4",
       "skip": null,
       "map": 0,
       "input": {
